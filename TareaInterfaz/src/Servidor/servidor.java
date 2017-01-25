@@ -1,43 +1,56 @@
 package Servidor;
 
 import java.rmi.Remote;
+import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Scanner;
 
 import Servidor.Interfaz;
 
 public class servidor implements Interfaz {
+	public int id;
+
+	BBDD bbdd;
+
+	// HashMap<Integer, ArrayList<String>> persona = new HashMap<Integer,
+	// ArrayList<String>>();
+	// array del arraylist de hasmap
+
+	ArrayList<String> contactos = new ArrayList<String>();
 
 	@Override
-	public ArrayList<String> verListaContacto(String nombre, int numero, String email) {
-		System.out.println("Ver lista: ");
-		ArrayList<String> obj = new ArrayList<String>();
-		obj.add(nombre);
-		obj.add(numero + "");
-		obj.add(email);
+	public ArrayList<String> verListaContacto() {
+		bbdd = new BBDD();
+		System.out.println(bbdd.verContactos());
+
 		// TODO Auto-generated method stub
-		return obj;
+		return bbdd.verContactos();
 	}
+
+	String datos[] = new String[2];
 
 	@Override
 	public ArrayList<String> crearContacto(String nombre, int numero, String email) {
-		// TODO Auto-generated method stub
-		ArrayList<String> obj = new ArrayList<String>();
-		obj.add(nombre);
-		obj.add(numero + "");
-		obj.add(email);
-		// TODO Auto-generated method stub
-		return obj;
+		bbdd = new BBDD();
+
+		contactos.add(nombre);
+		contactos.add(numero + "");
+		contactos.add(email);
+
+		bbdd.insertarContacto(nombre, numero, email);
+
+		return contactos;
 	}
 
 	@Override
 	public ArrayList<String> modificarContacto(String nombreAntiguo, String nombreNuevo, int numero, String email) {
 		// TODO Auto-generated method stub
 		ArrayList<String> obj = new ArrayList<String>();
-		//obj.add(nombreAntiguo);
+		// obj.add(nombreAntiguo);
 		obj.add(nombreNuevo);
 		obj.add(numero + "");
 		obj.add(email);
@@ -46,9 +59,11 @@ public class servidor implements Interfaz {
 	}
 
 	@Override
-	public String borrarContacto(String nombre) {
-		// TODO Auto-generated method stub
-		return nombre;
+	public int borrarContacto(int id) {
+		bbdd = new BBDD();
+		bbdd.borrarcontacto(id);
+
+		return id;
 	}
 
 	public static void main(String[] args) {
@@ -70,6 +85,23 @@ public class servidor implements Interfaz {
 			System.out.println("ERROR: No se ha podido inscribir el objeto servidor.");
 			e.printStackTrace();
 		}
+	}
+
+	@Override
+	public boolean login(String nombre, int contra) throws RemoteException {
+		bbdd = new BBDD();
+
+		if (bbdd.comprobarUser(nombre, contra)) {
+			return true;
+		} else {
+			return false;
+		}
+
+		/*
+		 * if (nombre.equals("admin") && contra == 1234) {
+		 * System.out.println("Login correcto"); return true; } else {
+		 * System.out.println("Login incorrecto"); return false; }
+		 */
 	}
 
 }
