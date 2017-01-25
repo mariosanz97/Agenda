@@ -41,7 +41,7 @@ public class cliente {
 
 					System.out.println(".......................... \n" + ".  0 Salir \n"
 							+ ".  1 Ver lista contactos  \n" + ".  2 Crear contacto \n" + ".  3 Modificar contacto \n"
-							+ ".  4 Borrar contacto  \n");
+							+ ".  4 Borrar contacto  \n" + ".  5 Log outt  \n");
 
 					o = sc.nextInt();
 
@@ -62,11 +62,15 @@ public class cliente {
 
 					}
 					if (o == 3) {
-						System.out.println("Atiguo nombre");
-						String Anombre = sc.next();
+						
+						System.out.println((agenda).verListaContacto());
+						
+						System.out.println("Escribe la id delcontacto a modificar ");
+						int idM = sc.nextInt();
+
 
 						System.out.println("Nuevo nombre");
-						String Nnombre = sc.next();
+						String nombreM = sc.next();
 
 						System.out.println("Nuevo numero");
 						int numero = sc.nextInt();
@@ -74,8 +78,7 @@ public class cliente {
 						System.out.println("Nuevo email");
 						String email = sc.next();
 
-						System.out.println("Ver contacto modificado "
-								+ (agenda).modificarContacto(Anombre, Nnombre, numero, email));
+						System.out.println("Ver contacto modificado " + (agenda).modificarContacto(nombreM, numero, email,idM));
 					}
 					if (o == 4) {
 
@@ -88,7 +91,13 @@ public class cliente {
 						System.out.println("Borrado");
 
 					}
+					
+					if (o == 5) {
 
+						System.out.println("has cerrado sesion");
+						main(args);
+
+					}
 				}
 			}
 		} else {

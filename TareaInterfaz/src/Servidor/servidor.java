@@ -47,15 +47,11 @@ public class servidor implements Interfaz {
 	}
 
 	@Override
-	public ArrayList<String> modificarContacto(String nombreAntiguo, String nombreNuevo, int numero, String email) {
-		// TODO Auto-generated method stub
-		ArrayList<String> obj = new ArrayList<String>();
-		// obj.add(nombreAntiguo);
-		obj.add(nombreNuevo);
-		obj.add(numero + "");
-		obj.add(email);
-		// TODO Auto-generated method stub
-		return obj;
+	public int modificarContacto(String nombre,int numero, String email,int id) {
+		bbdd = new BBDD();
+		bbdd.modificarContacto(nombre,numero,email,id);
+
+		return id;
 	}
 
 	@Override

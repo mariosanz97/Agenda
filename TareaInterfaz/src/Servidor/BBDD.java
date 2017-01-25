@@ -90,7 +90,6 @@ public class BBDD {
 				int ac = rs.getInt("contra");
 				int id = rs.getInt("iduser");
 
-				System.out.println("aaaa");
 
 				if (nombre.equals(no) && contra == ac) {
 					this.id = id;
@@ -178,6 +177,31 @@ public class BBDD {
 			e.printStackTrace();
 		}
 		return "Borrado correctamente";
+
+	}
+
+	public String modificarContacto(String nombre, int numero, String email, int id) {
+		ArrayList<String> conn = new ArrayList<>();
+		try {
+			con = DriverManager.getConnection("jdbc:mysql://localhost/tareapedro", "root", "");
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+
+		String sql = "UPDATE `tareapedro`.`contactos` SET `nombre`='" + nombre + "', `numero`='" + numero
+				+ "', `email`='" + email + "' WHERE `idcontactos`='" + id + "';";
+
+		try {
+			Statement stmt = con.createStatement();
+			stmt.executeUpdate(sql);
+			stmt.close();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return "Modificado";
 
 	}
 

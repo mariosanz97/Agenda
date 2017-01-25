@@ -13,7 +13,7 @@ public interface Interfaz extends Remote {
 
 	public ArrayList<String> crearContacto(String nombre, int numero, String email)throws RemoteException;
 
-	public ArrayList<String> modificarContacto(String nombreAntiguo, String nombreNuevo, int numero, String email)throws RemoteException;
+	public int modificarContacto(String nombre, int numero, String email,int id)throws RemoteException;
 
 	public int borrarContacto(int id)throws RemoteException;
 	
