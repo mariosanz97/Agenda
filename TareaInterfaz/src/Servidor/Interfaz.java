@@ -17,5 +17,5 @@ public interface Interfaz extends Remote {
 
 	public int borrarContacto(int id)throws RemoteException;
 	
-
+	public ArrayList<String> buscarC (String nombre)throws RemoteException;
 }

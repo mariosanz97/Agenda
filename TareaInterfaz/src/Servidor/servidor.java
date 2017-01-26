@@ -95,4 +95,16 @@ public class servidor implements Interfaz {
 
 	}
 
+	@Override
+	public ArrayList<String> buscarC (String nombre) throws RemoteException {
+		
+		bbdd = new BBDD();
+		//System.out.println(bbdd.verContactos());
+
+		// TODO Auto-generated method stub
+		return bbdd.buscarC(nombre);
+		
+		
+	}
+
 }

@@ -90,7 +90,6 @@ public class BBDD {
 				int ac = rs.getInt("contra");
 				int id = rs.getInt("iduser");
 
-
 				if (nombre.equals(no) && contra == ac) {
 					this.id = id;
 					com = true;
@@ -125,6 +124,48 @@ public class BBDD {
 		int id = this.id;
 		try {
 			ResultSet rs = stmt.executeQuery("SELECT * FROM tareapedro.contactos where idU = " + id);
+			boolean com = false;
+
+			while (rs.next()) {
+
+				String no = rs.getString("nombre");
+				int nu = rs.getInt("numero");
+				String em = rs.getString("email");
+				int idC = rs.getInt("idcontactos");
+
+				conn.add(no + " ");
+				conn.add(nu + " ");
+				conn.add(em + " ");
+				conn.add(" id --> " + idC + "\n");
+			}
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return conn;
+
+	}
+
+	public ArrayList<String> buscarC(String nombre) {
+		ArrayList<String> conn = new ArrayList<>();
+		try {
+			con = DriverManager.getConnection("jdbc:mysql://localhost/tareapedro", "root", "");
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+		}
+		Statement stmt = null;
+		try {
+			stmt = con.createStatement();
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		int id = this.id;
+		try {
+			
+			ResultSet rs = stmt.executeQuery("SELECT * FROM tareapedro.contactos where idU = " + id + " and nombre = '" + nombre + "'");
 			boolean com = false;
 
 			while (rs.next()) {
@@ -192,7 +233,7 @@ public class BBDD {
 			Statement stmt = con.createStatement();
 			stmt.executeUpdate(sql);
 			stmt.close();
-			
+
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

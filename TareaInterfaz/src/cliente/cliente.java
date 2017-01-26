@@ -41,7 +41,7 @@ public class cliente {
 
 					System.out.println(".......................... \n" + ".  0 Salir \n"
 							+ ".  1 Ver lista contactos  \n" + ".  2 Crear contacto \n" + ".  3 Modificar contacto \n"
-							+ ".  4 Borrar contacto  \n" + ".  5 Log outt  \n");
+							+ ".  4 Borrar contacto  \n" + ".  5  Buscar contacto  \n" + ".  6 Log outt  \n");
 
 					o = sc.nextInt();
 
@@ -87,11 +87,17 @@ public class cliente {
 						System.out.println("Escribe la id delcontacto a borrar ");
 						int idB = sc.nextInt();
 
-						(agenda).borrarContacto(idB);
+						System.out.println((agenda).borrarContacto(idB));
 						System.out.println("Borrado");
 					}
 					if (o == 5) {
+						System.out.println("Escribe el nombre del contacto ");
+						String nom = sc.next();
 
+						System.out.println((agenda).buscarC(nom));
+						// System.out.println("Borrado");
+					}
+					if (o == 6) {
 						System.out.println("has cerrado sesion");
 						main(args);
 
