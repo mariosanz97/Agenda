@@ -138,10 +138,6 @@ public class BBDD {
 				conn.add(nu + " ");
 				conn.add(em + " ");
 				conn.add(" id --> " + idC + "\n");
-				// con.add(no);
-
-				// System.out.println("aaaa");
-
 			}
 
 		} catch (SQLException e) {

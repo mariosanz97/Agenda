@@ -25,7 +25,7 @@ public class servidor implements Interfaz {
 	@Override
 	public ArrayList<String> verListaContacto() {
 		bbdd = new BBDD();
-		System.out.println(bbdd.verContactos());
+		//System.out.println(bbdd.verContactos());
 
 		// TODO Auto-generated method stub
 		return bbdd.verContactos();
@@ -93,11 +93,6 @@ public class servidor implements Interfaz {
 			return false;
 		}
 
-		/*
-		 * if (nombre.equals("admin") && contra == 1234) {
-		 * System.out.println("Login correcto"); return true; } else {
-		 * System.out.println("Login incorrecto"); return false; }
-		 */
 	}
 
 }
