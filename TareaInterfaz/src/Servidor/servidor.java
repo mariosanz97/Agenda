@@ -31,8 +31,7 @@ public class servidor implements Interfaz {
 		return bbdd.verContactos();
 	}
 
-	String datos[] = new String[2];
-
+	//String datos[] = new String[2];
 	@Override
 	public ArrayList<String> crearContacto(String nombre, int numero, String email) {
 		bbdd = new BBDD();

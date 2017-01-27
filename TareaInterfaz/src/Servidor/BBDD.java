@@ -20,6 +20,8 @@ public class BBDD {
 	// bbdd pantalla
 	// fichero bbdd
 	// bbdd fichero
+	
+	/*
 	private String[][] ejecutaQuery(String query) {
 		String sMatrixRes[][] = null;
 		try {
@@ -46,7 +48,7 @@ public class BBDD {
 		}
 		return sMatrixRes;
 	}
-
+*/
 	public void crearConexion() {
 		try {
 			Class.forName("com.mysql.jdbc.Driver").newInstance();
@@ -184,6 +186,10 @@ public class BBDD {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}
+		
+		if (conn.size()==0) {
+			conn.add("No hay contactos con ese nombre");
 		}
 		return conn;
 

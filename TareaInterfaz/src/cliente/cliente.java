@@ -41,7 +41,7 @@ public class cliente {
 
 					System.out.println(".......................... \n" + ".  0 Salir \n"
 							+ ".  1 Ver lista contactos  \n" + ".  2 Crear contacto \n" + ".  3 Modificar contacto \n"
-							+ ".  4 Borrar contacto  \n" + ".  5  Buscar contacto  \n" + ".  6 Log outt  \n");
+							+ ".  4 Borrar contacto  \n" + ".  5 Buscar contacto  \n" + ".  6 Log outt  \n");
 
 					o = sc.nextInt();
 
