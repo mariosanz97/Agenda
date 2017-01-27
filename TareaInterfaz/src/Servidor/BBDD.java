@@ -20,35 +20,19 @@ public class BBDD {
 	// bbdd pantalla
 	// fichero bbdd
 	// bbdd fichero
-	
-	/*
-	private String[][] ejecutaQuery(String query) {
-		String sMatrixRes[][] = null;
-		try {
 
-			Statement stmt = con.createStatement();
-			ResultSet rset = stmt.executeQuery(query);
-			rset.last();
-			int f = rset.getRow();
-			rset.beforeFirst();
-			ResultSetMetaData rsmd = rset.getMetaData();
-			int c = rsmd.getColumnCount();
-			int i = 0;
-			sMatrixRes = new String[f][c];
-			while (rset.next()) {
-				for (int j = 0; j < c; j++) {
-					sMatrixRes[i][j] = rset.getString(j + 1);
-				}
-				i++;
-			}
-			rset.close();
-			stmt.close();
-		} catch (SQLException s) {
-			s.printStackTrace();
-		}
-		return sMatrixRes;
-	}
-*/
+	/*
+	 * private String[][] ejecutaQuery(String query) { String sMatrixRes[][] =
+	 * null; try {
+	 * 
+	 * Statement stmt = con.createStatement(); ResultSet rset =
+	 * stmt.executeQuery(query); rset.last(); int f = rset.getRow();
+	 * rset.beforeFirst(); ResultSetMetaData rsmd = rset.getMetaData(); int c =
+	 * rsmd.getColumnCount(); int i = 0; sMatrixRes = new String[f][c]; while
+	 * (rset.next()) { for (int j = 0; j < c; j++) { sMatrixRes[i][j] =
+	 * rset.getString(j + 1); } i++; } rset.close(); stmt.close(); } catch
+	 * (SQLException s) { s.printStackTrace(); } return sMatrixRes; }
+	 */
 	public void crearConexion() {
 		try {
 			Class.forName("com.mysql.jdbc.Driver").newInstance();
@@ -166,8 +150,9 @@ public class BBDD {
 		}
 		int id = this.id;
 		try {
-			
-			ResultSet rs = stmt.executeQuery("SELECT * FROM tareapedro.contactos where idU = " + id + " and nombre = '" + nombre + "'");
+
+			ResultSet rs = stmt.executeQuery(
+					"SELECT * FROM tareapedro.contactos where idU = " + id + " and nombre = '" + nombre + "'");
 			boolean com = false;
 
 			while (rs.next()) {
@@ -187,8 +172,8 @@ public class BBDD {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		if (conn.size()==0) {
+
+		if (conn.size() == 0) {
 			conn.add("No hay contactos con ese nombre");
 		}
 		return conn;
@@ -274,6 +259,74 @@ public class BBDD {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+
+	}
+
+	public String Registrar(String name, int pass) {
+		try {
+			con = DriverManager.getConnection("jdbc:mysql://localhost/tareapedro", "root", "");
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+
+		String sql = "INSERT INTO `tareapedro`.`user` (`nombre`, `contra`) VALUES (?,?);";
+
+		try {
+			PreparedStatement psts = null;
+			psts = con.prepareStatement(sql);
+			psts.setString(1, name);
+			psts.setInt(2, pass);
+
+			psts.executeUpdate();
+
+			psts.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return "Registro exitoso";
+
+	}
+
+	public boolean comprobarUser(String nombre) {
+		ArrayList<String> conn = new ArrayList<>();
+		try {
+			con = DriverManager.getConnection("jdbc:mysql://localhost/tareapedro", "root", "");
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+		}
+		Statement stmt = null;
+		try {
+			stmt = con.createStatement();
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+
+			ResultSet rs = stmt.executeQuery("SELECT * FROM tareapedro.user where  nombre = '" + nombre + "'");
+			boolean com = false;
+
+			while (rs.next()) {
+
+				String no = rs.getString("nombre");
+
+				if (nombre.equals(no)) {
+					return false;
+				}
+			}
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		if (conn.size() == 0) {
+			conn.add("No hay contactos con ese nombre");
+		}
+		return true;
 
 	}
 

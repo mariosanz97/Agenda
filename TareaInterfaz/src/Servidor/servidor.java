@@ -25,13 +25,13 @@ public class servidor implements Interfaz {
 	@Override
 	public ArrayList<String> verListaContacto() {
 		bbdd = new BBDD();
-		//System.out.println(bbdd.verContactos());
+		// System.out.println(bbdd.verContactos());
 
 		// TODO Auto-generated method stub
 		return bbdd.verContactos();
 	}
 
-	//String datos[] = new String[2];
+	// String datos[] = new String[2];
 	@Override
 	public ArrayList<String> crearContacto(String nombre, int numero, String email) {
 		bbdd = new BBDD();
@@ -46,9 +46,9 @@ public class servidor implements Interfaz {
 	}
 
 	@Override
-	public int modificarContacto(String nombre,int numero, String email,int id) {
+	public int modificarContacto(String nombre, int numero, String email, int id) {
 		bbdd = new BBDD();
-		bbdd.modificarContacto(nombre,numero,email,id);
+		bbdd.modificarContacto(nombre, numero, email, id);
 
 		return id;
 	}
@@ -95,15 +95,37 @@ public class servidor implements Interfaz {
 	}
 
 	@Override
-	public ArrayList<String> buscarC (String nombre) throws RemoteException {
-		
+	public ArrayList<String> buscarC(String nombre) throws RemoteException {
+
 		bbdd = new BBDD();
-		//System.out.println(bbdd.verContactos());
+		// System.out.println(bbdd.verContactos());
 
 		// TODO Auto-generated method stub
 		return bbdd.buscarC(nombre);
-		
-		
+
+	}
+
+	@Override
+	public String Registro(String name, int pass) throws RemoteException {
+
+		bbdd = new BBDD();
+
+		return bbdd.Registrar(name, pass);
+	}
+
+	@Override
+	public boolean ComprobarUser(String name) throws RemoteException {
+
+		bbdd = new BBDD();
+		// System.out.println(bbdd.verContactos());
+
+		// TODO Auto-generated method stub
+		if (!bbdd.comprobarUser(name)) {
+			return false;
+		} else {
+			return true;
+		}
+
 	}
 
 }
